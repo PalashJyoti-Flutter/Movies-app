@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/providers/movie_provider.dart';
+import 'package:movies_app/screens/details_page.dart';
 import 'package:movies_app/screens/home_page.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+        create: ((context) => MovieProvider()),
+      )
+    ],
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -16,14 +26,21 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: Colors.black,
           primarySwatch: Colors.pink,
           textTheme: const TextTheme(
-              bodyMedium: TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ))),
+            bodyMedium: TextStyle(
+              fontSize: 18,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+            bodyLarge: TextStyle(
+              fontSize: 26,
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
+          )),
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
+        DetailsPage.route: (context) => const DetailsPage(),
       },
     );
   }
