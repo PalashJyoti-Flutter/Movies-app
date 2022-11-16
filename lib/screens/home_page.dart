@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/screens/details_page.dart';
+import 'package:provider/provider.dart';
+import 'package:movies_app/providers/movie_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +34,8 @@ class HomePage extends StatelessWidget {
               SizedBox(
                 height: 200,
                 child: ListView.builder(
-                  itemCount: 5,
+                  itemCount:
+                      context.watch<MovieProvider>().trendingMovies.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: ((context, index) => Container(
                         margin: const EdgeInsets.only(right: 15),
@@ -41,6 +44,15 @@ class HomePage extends StatelessWidget {
                             borderRadius: BorderRadius.circular(10)),
                         height: 200,
                         width: 120,
+                        child: InkWell(
+                          onTap: () => Navigator.pushNamed(
+                              context, DetailsPage.route,
+                              arguments: {'index': index}),
+                          child: Image.network(
+                            "http://image.tmdb.org/t/p/w500${context.watch<MovieProvider>().trendingMovies[index]['poster_path']}",
+                            fit: BoxFit.fill,
+                          ),
+                        ),
                       )),
                 ),
               ),
