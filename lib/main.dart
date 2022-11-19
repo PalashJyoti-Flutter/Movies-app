@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movies_app/providers/movie_provider.dart';
-import 'package:movies_app/screens/details_page.dart';
+import 'package:movies_app/screens/toprated_detail_page.dart';
+import 'package:movies_app/screens/trending_details_page.dart';
 import 'package:movies_app/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
@@ -40,7 +41,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        DetailsPage.route: (context) => const DetailsPage(),
+        TrendingDetailsPage.route: (context) => const TrendingDetailsPage(),
+        TopratedDetailsPage.route: (context) => const TopratedDetailsPage(),
       },
     );
   }
