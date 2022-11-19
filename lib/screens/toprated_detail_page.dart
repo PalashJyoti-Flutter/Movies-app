@@ -3,9 +3,9 @@ import 'package:provider/provider.dart';
 
 import '../providers/movie_provider.dart';
 
-class DetailsPage extends StatelessWidget {
-  static String route = 'detail page';
-  const DetailsPage({super.key});
+class TopratedDetailsPage extends StatelessWidget {
+  static String route = 'toprated detail page';
+  const TopratedDetailsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class DetailsPage extends StatelessWidget {
                 bottomRight: Radius.circular(50),
               ),
               child: Image.network(
-                "http://image.tmdb.org/t/p/w500${context.watch<MovieProvider>().trendingMovies[index]['poster_path']}",
+                "http://image.tmdb.org/t/p/w500${context.watch<MovieProvider>().tvs[index]['poster_path']}",
                 fit: BoxFit.fitWidth,
               ),
             ),
@@ -38,8 +38,7 @@ class DetailsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text(
-                context.watch<MovieProvider>().trendingMovies[index]
-                    ['original_title'] as String,
+                context.watch<MovieProvider>().tvs[index]['name'] as String,
                 style: const TextStyle(
                   color: Colors.pink,
                   fontSize: 26,
